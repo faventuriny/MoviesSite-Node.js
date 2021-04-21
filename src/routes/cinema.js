@@ -3,6 +3,7 @@ const Cinema = require('../models/cinema')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 
+
 router.post('/new', async (req, res) => {
     const cinema = new Cinema(req.body)
 
@@ -20,14 +21,15 @@ router.get('/cinemas', async (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(cinemas);
+            console.log(cinemas);
+            res.send(cinemas);
         }
     })
 })
 
 
 // edit cinema
-router.patch('/cinema/:id', auth, async (req, res) => {
+router.patch('/cinema/:id', async (req, res) => { //add auth!!!!!!!!
 
     const updates = Object.keys(req.body)
 
